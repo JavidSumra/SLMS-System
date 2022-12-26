@@ -1,0 +1,129 @@
+<!DOCTYPE html
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Reset</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins',sans-serif;
+        }
+        body{
+            height: 100vh;
+            background: linear-gradient(135deg,#71b7e6,#9b59b6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+        .container{
+            max-width: 350px;
+            background: #fff;
+            width: 100%;
+            border-radius: 5px;
+            padding: 25px 30px;
+        }
+        .container .title{
+            font-size: 25px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            position: relative;
+            text-align: center;
+        }
+        form .newpass .inputbox{
+            width: calc(100% / 2 - 20px);
+            margin-bottom: 15px;
+        }
+        .newpass .inputbox .detail{
+            font-weight: 500;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .newpass .inputbox input{
+            height: 45px;
+            outline: none;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            padding-left: 15px;
+            font-size: 16px;
+            width: 220%;
+            border-bottom-width: 2px;
+            transition: all 0.5s ease;
+        }
+        .newpass .inputbox input:focus,
+        .newpass .inputbox input:valid{
+            border-color: #9b59b6;   
+        }
+        form .button{
+            height: 45px;
+            margin: 20px 0;
+        }
+        form .button input{
+            height: 100%;
+            width: 100%;
+            outline:none;
+            color: #fff;
+            background: #009579;
+            border: none;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            border-radius: 5px;
+        }
+        form .button input:hover{
+            background: #006653;
+            transition:  0.5s;
+        }
+        @media (max-width:584px){
+            .container{
+                max-width: 100%;
+            }
+            form .newpass .inputbox{
+                margin-bottom:15px ;
+                width: 100%;
+            }
+            .container form .newpass{
+                max-width: 300px;
+                overflow-y: scroll;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Create New Password</div><hr><br>
+        <form action="/reset" method="post">
+            <div class="newpass">
+                <div class="inputbox">
+                    <span class="text">New Password</span>
+                    <input type="text" id="pass" name="Newpass" placeholder="Create Password" onkeyup="passvalid()" required>
+                </div>
+                <div class="inputbox">
+                    <span class="text">Confirm Password</span>
+                    <input type="text" name="Connewpass" placeholder="Confirm Password" required>
+                </div>
+            </div>
+            <div class="button">
+                <input type="submit" value="Change">
+            </div>
+        </form>
+    </div>
+    <script>
+        var pass = document.getElementById('pass')
+         function passvalid(){
+                if(!pass.value.match(/((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,}))/))
+                {
+                    pass.style.borderColor = "red";
+                }
+                else{
+                    pass.style.borderColor = "green";
+                }
+            }
+    </script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background: linear-gradient(135deg,#71b7e6,#9b59b6);
+            height: 100vh;
+            /* position: absolute; */
+            display: flex;
+            padding: 10px;
+            font-family: "Poppins",sans-serif;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            margin: 0;
+        }
+        .container{
+            background: rgba(255,255,255,0.3);
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+        }
+        .code-container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 40px 0;
+        }
+        .code{
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 10px;
+            border: 1px solid #eee;
+            font-size: 30px;
+            font-family: 'Poppins',sans-serif;
+            width: 60px;
+            height: 60px;
+            margin: 10px;
+            text-align: center;
+            font-weight: 300;
+        }
+        ::placeholder{
+            text-align: center;
+        }
+        .code::-webkit-outer-spin-button,
+        .code::-webkit-inner-spin-button{
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        @media (max-width:584px){
+            .code-container{
+                flex-wrap: wrap;
+                max-width: 100%;
+            }
+            .code{
+                font-size: 24px;
+                height: 50px;
+                max-width: 50px;
+                font-size: bold;
+            }
+        }
+        .code:valid{
+            border-color: #9b59b6;
+            box-shadow: 0 10px 10px -5px rgba(0, 0, 0, 0.25);
+        }
+        .btn{
+            font-family: "Poppins",sans-serif;
+            max-width: 400px;
+            width: 100%;
+            display: inline-block;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            user-select: none;
+            cursor: pointer;
+            border: 1px solid transparent;
+            margin: 0 0 20px 0;
+            padding: 0.775rem 0.775rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: 10px;
+            letter-spacing: 0.7;
+        }
+        .btn-primary{
+            color: #fff;
+            background: #9b59b6;
+            border-color: #9b59b6;
+        }
+        a{
+            text-decoration: none;
+        }
+        a:hover{
+            text-decoration: underline;
+        }
+        h2{
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <% if(EmailSuccess && EmailSuccess.length != 0) {%>
+            <div class="alert alert-success"><%= EmailSuccess %></div>
+            <% } %>
+        <h2>Verify Your Account</h2>
+        <p>We emailed you the five digit code to Your Email Address<br>Enter the code below to confirm your email address
+        </p>
+        <form action="/otp/hod" method="post">
+            <div class="code-container">
+                <input type="number" class="code" name="value" id="" placeholder="0" min="0" max="9" required>
+                <input type="number" class="code" name="value" id="" placeholder="0" min="0" max="9" required>
+                <input type="number" class="code" name="value" id="" placeholder="0" min="0" max="9" required>
+                <input type="number" class="code" name="value" id="" placeholder="0" min="0" max="9" required>
+                <input type="number" class="code" name="value" id="" placeholder="0" min="0" max="9" required>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary">Verify</button>
+            </div>
+            <small>
+                If you did't received a code!! <a href="/forgot/Hod"><strong>RESEND</strong></a>
+            </small>
+        </form>
+    </div>
+    <script>
+        const codes = document.querySelectorAll('.code')
+
+        codes[0].focus()
+
+        codes.forEach((code,index)=>{
+            code.addEventListener("keydown",(e)=>{
+                if(e.key >= 0 && e.key <= 9){
+                    codes[index].value = " ";
+                    setTimeout(()=>codes[index + 1].focus(),10);
+                }
+                else if(e.key === 'Backspace'){
+                    setTimeout(()=> codes[index - 1].focus(),10)
+                }
+            })
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NavBar</title>
+    <style>
+          @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins',sans-serif;
+        }
+        :root{
+            --body-color:#E4E9F7;
+            --slidebar-color:#FFF;
+            --primary-color:#695CFE;
+            --primary-color-light:#F6F5FF;
+            --toggle-color:#DDD;
+            --text-color:#707070;
+
+            --tran-02:all 0.2s ease;
+            --tran-03:all 0.3s ease;
+            --tran-04:all 0.4s ease;
+            --tran-05:all 0.4s ease;
+        }
+        body{
+            height: 100vh;
+            background: var(--body-color);
+            transition: var(--tran-05);
+        }
+        .sidebar{
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 250px;
+            padding: 10px 14px;
+            background: var(--slidebar-color);
+            transition: 1s;
+            z-index: 100;
+        }
+        .sidebar .image-text ion-icon{
+            font-size: 40px;
+            border-radius: 6px;
+            color: var(--text-color);
+        }
+        .sidebar header .image-text{
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar .text{
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-color);
+            transition: 1s;
+            white-space: nowrap;
+            opacity: 1;
+        }
+
+        .sidebar .image{
+            min-width: 60px;
+            display: flex;
+            align-items: center;
+        }
+        header .image-text .header-text{
+            display: flex;
+            flex-direction: column;
+        }
+        .header-text .name{
+            font-weight: 600;
+        }
+        .header-text .profession{
+            margin-top: 4px;
+        }
+        .sidebar header .toggle{
+            position: absolute;
+            top: 50%;
+            right: -25px;
+            transform: translateY(-50%) rotate(180deg);
+            height: 25px;
+            width: 25px;
+            background: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: var(--slidebar-color);
+            font-size: 22px;
+            transition: var(--tran-03);
+        }
+        .sidebar header{
+            position: relative;
+        }
+        .sidebar li{
+            height: 50px;
+            /* background: ; */
+            margin-top: 10px;
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+        .sidebar li .icon{
+            font-size: 25px;
+            min-width: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .sidebar li .icon,
+        .sidebar li .text{
+            color: var(--text-color);
+            transition: var(--tran-02);
+        }
+        .sidebar li a{
+            text-decoration: none;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            border-radius: 6px;
+            transition: var(--tran-04);
+            width: 100%;
+        }
+        .sidebar .search-box{
+            background: var(--primary-color-light);
+            border-radius: 6px;
+        }
+        .search-box input{
+            height: 100%;
+            width: 100%;
+            background: var(--primary-color-light);
+            outline: none;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 20px;
+        }
+        .sidebar li a:hover{
+            background: var(--primary-color);
+        }
+        .sidebar li a:hover .icon,
+        .sidebar li a:hover .text{
+            color: var(--slidebar-color);
+        }
+        .sidebar .menu-bar{
+            height: calc(100% - 50px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .menu-bar .mode{
+            background: var(--primary-color-light);
+            position: relative;
+            border-radius: 6px;
+        }
+        .menu-bar .mode ion-icon{
+            position: absolute;
+            transition: var(--tran-03);
+        }
+        
+        .menu-bar .mode .moon-sun{
+            height: 50px;
+            width: 60px;
+            display: flex;
+            align-items: center;
+        }
+        .menu-bar .mode ion-icon.sun{
+            opacity: 0;
+        }
+        body.dark .menu-bar .mode ion-icon.sun{
+            opacity: 1;
+        }
+        body.dark .menu-bar .mode ion-icon.moon{
+            opacity: 0;
+        }
+        .menu-bar .mode .toggle-switch{
+            height: 100%;
+            min-width: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 6px;
+            position: absolute;
+            right: 0px;
+            background: var(--primary-color-light);
+        }
+        .toggle-switch .switch{
+            position: relative;
+            height: 22px;
+            width: 44px;
+            background: var(--toggle-color);
+            border-radius: 25px;
+        }
+        .switch::before{
+            content: " ";
+            position: absolute;
+            height: 15px;
+            width: 15px;
+            background: var(--slidebar-color);
+            border-radius: 50%;
+            top:50%;
+            left: 5px;
+            transform: translateY(-50%);
+            transition: var(--tran-03);
+        }
+        body.dark .switch::before{
+            left: 24px;
+        }
+        body.dark{
+            --body-color:#18191A;
+            --slidebar-color:#242526;
+            --primary-color:#3A3B3C;
+            --primary-color-light:#3A383C;
+            --toggle-color:#FFF;
+            --text-color:#CCC;
+        }
+        .sidebar.close .text{
+            opacity: 0;
+        }
+        .sidebar.close{
+            width: 88px;
+        }
+        body.dark .sidebar header .toggle{
+            transform: rotate(180deg);
+            color: var(--text-color);
+        }
+        body.dark .sidebar.close header .toggle{
+            position: absolute;
+            top: 50%;
+            right: -25px;
+            transform: translateY(-50%) rotate(360deg);
+            height: 25px;
+            width: 25px;
+            background: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: var(--slidebar-color);
+            font-size: 22px;
+            transition: var(--tran-03);
+        }
+        .sidebar.close header .toggle{
+            transform: translateY(-50%);
+        }
+        body.dark .sidebar li a:hover .icon,
+        body.dark .sidebar li a:hover .text{
+            color: var(--text-color);
+        }
+        .sidebar .menu{
+            margin-top: 30px;
+        }
+        @media (max-height:530px){
+            .sidebar{
+                overflow-y: scroll;
+                overflow-x: hidden;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <ion-icon name="people-outline"></ion-icon>
+                </span>
+
+                <div class="text header-text">
+                    <span class="name">SLMS</span>
+                    <span class="profession">GatePass System</span>
+                </div>
+            </div>
+            <ion-icon class="toggle" name="chevron-forward-outline"></ion-icon>
+        </header>
+        <div class="menu-bar">
+            <div class="menu">
+                <li class="search-box">
+                        <ion-icon name="search-outline" class="icon"></ion-icon>
+                        <input type="search" placeholder="Search...." name="" id="">
+                </li>
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="/Home">
+                            <ion-icon name="home-outline" class="icon"></ion-icon>
+                            <span class="text nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="/applyforleave">
+                            <ion-icon name="airplane-outline" class="icon"></ion-icon>
+                            <span class="text nav-text">Apply For Leave</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="">
+                            <ion-icon name="timer-outline" class="icon"></ion-icon>
+                            <span class="text nav-text">History</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="">
+                            <ion-icon name="person-outline" class="icon"></ion-icon>
+                            <span class="text nav-text">Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="/Register">
+                            <ion-icon name="add-outline" class="icon"></ion-icon>
+                            <span class="text nav-text">Register</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="bottom-content">
+                <li class="">
+                    <a href="">
+                        <ion-icon name="log-out-outline" class="icon"></ion-icon>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
+                <li class="mode">
+                   <div class="moon-sun">
+                      <ion-icon name="moon-outline" class="icon moon"></ion-icon>
+                      <ion-icon name="sunny-outline" class="icon sun"></ion-icon>
+                   </div>
+                   <span class="mode-text text">Dark Mode</span>
+
+                   <div class="toggle-switch">
+                    <span class="switch"></span>
+                   </div>
+                </li>
+            </div>
+        </div>
+    </nav>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script>
+    const body = document.querySelector("body"),
+                sidebar = body.querySelector(".sidebar"),
+                toggle = body.querySelector(".toggle"),
+                searchBtn = body.querySelector(".search-box"),
+                modeswitch = body.querySelector(".toggle-switch"), 
+                mode = body.querySelector(".mode-text");
+                
+        modeswitch.addEventListener("click",()=>{
+            body.classList.toggle("dark");
+
+            if(body.classList.contains("dark")){
+                mode.innerHTML = "Light Mode"
+            }
+            else{
+                mode.innerHTML = "Dark Mode"
+            }
+        })
+
+        toggle.addEventListener("click",()=>{
+            sidebar.classList.toggle("close");
+        })
+
+
+</script>
+</body>
+</html>

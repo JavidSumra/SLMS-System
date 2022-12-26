@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Option</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins',sans-serif;
+        }
+        body{
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            height: 100vh;
+            background: linear-gradient(135deg,#71b7e6,#9b59b6);
+        }
+        .menu{
+            position: relative;
+            max-width: 280px;
+            width: 100%;
+            /* background: rgba(0, 0, 0, 0.1); */
+            height: 280px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .menu .toggle{
+            position: relative;
+            width: 60px;
+            height: 60px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 3px 4px rgba(0, 0, 0, 0.15);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+            cursor: pointer;
+            font-size: 2em;
+            transition: 1.25s;
+        }
+        .menu.active .toggle{
+            transform: rotate(360deg);
+            /* transition:all 0.5s; */
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15),0 0 0 2px #333,0 0 0 8px #fff;
+        }
+        .menu li{
+            position: absolute;
+            left: 0;
+            list-style: none;
+            transition: 0.5s;
+            transform: rotate(calc(360deg/3 * var(--i)));
+            scale: 0;
+            transform-origin: 140px;
+            transition-delay: calc(0.25s * var(--i));
+        }
+        .menu.active li{
+            scale: 0.8;
+        }
+        .menu li a{
+            position: relative;
+            display: flex;
+            transform:  rotate(calc(-360deg/3 * var(--i)));
+            width: 60px;
+            height: 60px;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            font-size: 1.75em;
+            color: var(--clr);
+            box-shadow: 0 3px 4px rgba(0, 0, 0, 0.15);
+            transition: 0.5s;
+        }
+        .menu li:hover a{
+            font-size: 2.5em;
+            box-shadow: 0 0 2px var(--clr),0 0 0 6px #fff;
+        }
+        .tooltip{
+            position: relative;
+            display: inline;
+        }
+        .tooltip .tooltiptext{
+            visibility: hidden;
+            width: 80px;
+            background-color: black;
+            text-align: center;
+            border-radius: 6px;
+            font-size: 12px;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 1;
+        }
+        .tooltip:hover .tooltiptext{
+            visibility: visible;
+            color: #fff;
+        }
+        @media (max-width:583px){
+            .menu{
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <div class="toggle">
+            <ion-icon name="log-in-outline"></ion-icon>
+        </div>
+        <li style="--i:0;--clr:#1877f2;">
+            <a href="/hod/login">
+                <div class="tooltip">
+                    <ion-icon name="person-outline"></ion-icon>
+                    <span class="tooltiptext">HOD</span>
+                </div>
+                </a>
+        </li>
+        <li style="--i:1;--clr:#25d366;">
+            <a href="/">
+                <div class="tooltip">
+                    <ion-icon name="people-outline"></ion-icon>
+                    <span class="tooltiptext">Student</span>
+                </div>
+                </a>
+        </li>
+        <li style="--i:2;--clr:#ff0000;">
+            <a href="/professor/login">
+                <div class="tooltip">
+                    <ion-icon name="person-circle-outline"></ion-icon>
+                    <span class="tooltiptext">Professor</span>
+                </div>
+                </a>
+        </li>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script>
+    let toggle = document.querySelector('.toggle');
+    let menu = document.querySelector('.menu');
+
+     toggle.onclick = function(){
+        menu.classList.toggle('active');
+     }
+
+</script>
+</body>
+</html>

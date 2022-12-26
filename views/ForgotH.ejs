@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins',sans-serif;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(135deg,#71b7e6,#9b59b6);
+        }
+        .container{
+            max-width: 330px;
+            background-color: #fff;
+            border-radius: 7px;
+            padding: 25px 30px;
+            width: 100%;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+        }
+        .container .title{
+            font-size: 25px;
+            font-weight: 500;
+            position: relative;
+            text-align: center;
+        }
+        .container form .userdetail{
+            display: flex;
+            flex-wrap: wrap-reverse;
+            justify-content: space-between;
+            margin: 20px 0 12px 0;
+        }
+        form .userdetail .inputbox{
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .userdetail .inputbox .detail{
+            font-weight: 500;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .userdetail .inputbox input{
+            height: 45px;
+            outline: none;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            padding-left: 15px;
+            font-size: 16px;
+            width: 100%;
+            border-bottom-width: 2px;
+            transition: all 0.5s ease;
+        }
+        .userdetail .inputbox input:focus
+        {
+            border-color: #9b59b6;   
+        }
+        form .submit{
+            height: 45px;
+            margin: 10px 0;
+        }
+        form .submit input{
+            height: 100%;
+            width: 100%;
+            outline:none;
+            color: #fff;
+            background: #009579;
+            border: none;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            border-radius: 5px;
+        }
+        form .submit input:hover{
+            background: #006653;
+            transition: 0.5s;
+        }
+        hr{
+            width: 100%;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <% if(EmailError && EmailError.length != 0) {%>
+            <div class="alert alert-danger"><%= EmailError %></div>
+            <% } %>
+        <div class="title">Forgot Password</div><br>
+        <hr>
+        <form action="/forgot/Hod" method="post">
+            <div class="userdetail">
+                <div class="inputbox">
+                    <span class="detail">Email</span>
+                    <input type="email" name="email" onkeyup="validate()" id="email" placeholder="Enter Your Email">
+                </div>
+            </div>
+            <div class="submit">
+                <input type="submit" value="Send OTP">
+            </div>
+        </form>
+    </div>
+    <script>
+        const email = document.getElementById("email")
+        function validate(){
+                if(!email.value.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/))
+                {
+                    email.style.borderColor = "red";
+                }
+                else{
+                    email.style.borderColor = "green";
+                }
+            }
+    </script>
+</body>
+</html>
