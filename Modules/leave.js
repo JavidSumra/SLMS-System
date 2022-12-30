@@ -1,6 +1,14 @@
 const db = require("../DataBase/db_connect");
 const mongoose = require("mongoose");
 
+let today = new Date()
+
+let day = today.getDate();
+let month = today.getMonth()+1;
+let year = today.getFullYear();
+
+let date = (day+"/"+month+"/"+year)
+
 let leaveschema = new mongoose.Schema({
     Name:{
         type:String
@@ -51,9 +59,9 @@ let leaveschema = new mongoose.Schema({
         },
         username: String
       },
-      Date:{
-        type:Date,
-        default:Date.now()
+      ApplyDate:{
+        type:String,
+        default:date,
       }
 },{ timestamps: {},strictPopulate:false});
 

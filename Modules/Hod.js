@@ -2,6 +2,14 @@ let DB = require("../DataBase/db_connect");
 let mongoose = require("mongoose");
 let validate = require("validator");
 
+let today = new Date()
+
+let day = today.getDate();
+let month = today.getMonth()+1;
+let year = today.getFullYear();
+
+let date = (day+"/"+month+"/"+year)
+
 let hodschema = new mongoose.Schema({
     Name:{
         type:String,
@@ -26,8 +34,8 @@ let hodschema = new mongoose.Schema({
         required:true
     },
     Date:{
-        type:Date,
-        default:Date.now()
+        type:String,
+        default:date,
     },
     leaves:[
         {

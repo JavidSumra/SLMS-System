@@ -1,7 +1,15 @@
 const DB = require("../DataBase/db_connect");
-const mongoose = require('mongoose')
-const validator = require('validator')
-const bcrypt = require('bcrypt')
+const mongoose = require('mongoose');
+const validator = require('validator');
+const bcrypt = require('bcrypt');
+
+let today = new Date()
+
+let day = today.getDate();
+let month = today.getMonth()+1;
+let year = today.getFullYear();
+
+let date = (day+"/"+month+"/"+year)
 
 const studentschema = new mongoose.Schema({
     Name:{
@@ -34,8 +42,8 @@ const studentschema = new mongoose.Schema({
         required:true
     },
     Date:{
-        type:Date,
-        default:Date.now()
+        type:String,
+        default: date,
     },
     leaves:[
         {
