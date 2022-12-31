@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hod Home</title>
+    <style>
+        .table{
+            position: relative;
+            max-height: 100%;
+            max-width: calc(100% - 450px);
+            left: 150px;
+            transition: var(--tran-05);
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            padding: 0.2rem;
+            background:var(--slidebar-color);
+            font-family: "Poppins",sans-serif;
+            -webkit-font-smoothing:antialiased;
+            text-rendering: optimizeLegibility;
+            color: var(--text-color);
+            border-radius: 6px;
+            width: 100%;
+            margin: 20px;
+            margin-left: 10rem;
+        }
+        .warning{
+            color: #fd5a5c;
+        }
+        .data-table th,
+        .data-table td{
+            text-align: center;
+            margin: 0.5em  1em;
+        }
+
+        .data-table th{
+            display: none;
+        }
+        .data-table td{
+            display: block;
+        }
+        .data-table td:first-child{
+            padding-top: .5em;
+        }
+        .data-table td:last-child{
+            padding: 0.5rem;
+        }
+        .data-table td::before{
+            content: attr(data-th) ": ";
+            font-weight: bold;
+            width: 6.5em;
+            display: inline-block;
+        }
+        .data-table th,
+        .data-table td::before{
+            color: var(--primary-color);
+        }
+        body.dark .data-table th,
+        .data-table td::before{
+            color: #695CFE;
+        }
+
+        .sidebar.close ~ .table{
+            left: 88px;
+            width: calc(100% - 88px);
+            width: 100%;
+        }
+
+        button{
+            margin: 10px;
+            padding: 8px;
+            color: white;
+            border-radius: 6px;
+            border: none;
+            outline: none;
+            font-family: "Poppins",sans-serif;
+            transition: 0.5s all;
+        }
+        .approve{
+            background: #2db85b;
+        }
+        .Reject{
+            background: #e55353;
+        }
+
+        .approve:hover{
+            background: var(--primary-color);
+            color: #2db85b;
+            border: 1px solid #2db85b;
+        }
+        .Reject:hover{
+            background: var(--primary-color);
+            color: #e55353;
+            border: 1px solid #e55353;
+        }
+
+        @media (min-width:922px){
+            .data-table td::before{
+                display: none;
+            }
+            .data-table th,
+            .data-table td{
+                display: table-cell;
+                padding: 0.25em 0.5em;
+                padding: 1em !important;
+            }
+            .data-table th:first-child,
+            .data-tabletd td:first-child{
+                padding-left: 0;
+            }
+            .data-table th:last-child,
+            .data-table td:last-child{
+                padding-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <%- include("./partials/nav") %>
+    <div class="table">
+        <table class="data-table">
+           <thead>
+            <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Reason</th>
+                <th>Out Time</th>
+                <th>In Time</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Click</th>
+              </tr>
+           </thead>
+           <tbody>
+            <% for(let i = 0;i < find.length ;i++){ %>
+            <% if(find[i].finalstatus == "Pending"){ %>  
+                    <tr>
+                        <td><%= i+1 %></td>
+                        <td><%= find[i].Name %></td>
+                        <td><%= find[i].Reason %></td>
+                        <td><%= find[i].outtime %></td>
+                        <td><%= find[i].intime %></td>
+                        <td><%= find[i].ApplyDate %></td>
+                        <td id="<%=i%>")><%= find[i].finalstatus %></td>
+                        <td><button type="submit" class="approve">Accept</button><button type="submit" class="Reject">Reject</button></td>
+                    </tr>
+                <% } %>
+                <% } %>
+        </tbody>
+        </table>
+    </div>
+</body>
+</html>

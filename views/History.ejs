@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History</title>
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+        .home{
+            height: 100%;
+            width: calc(100% - 250px);
+            position: absolute;
+            left: 250px;
+            background: var(--body-color);
+            transition: var(--tran-05);
+        }
+
+        .sidebar.close ~ .home{
+            left: 88px;
+            width: calc(100% - 88px);
+        }
+
+        .home .text{
+            font-size: 30px;
+            font-weight: 500;
+            color: var(--text-color);
+            padding: 8px 40px;
+        }
+        .student-name{
+            float: right;
+            color: var(--primary-color);
+            font-family: "Poppins",sans-serif;
+        }
+        body.dark .student-name{
+            color: #695CFE;
+        }
+    </style>
+</head>
+<body>
+    <%- include("./partials/nav.ejs")%>
+    <section class="home">
+        <div class="text">Your History<span class="student-name">Hello, <%= nameofstudent %> </span></div>
+    </section>
+   <div>
+    <table class="data-table">
+        <thead>
+         <tr>
+             <th>No</th>
+             <th>Reason</th>
+             <th>Out Time</th>
+             <th>In Time</th>
+             <th>Date</th>
+             <th>Status</th>
+           </tr>
+        </thead>
+        <tbody>
+         <% for(let i = 0;i < find.length ;i++){ %>
+             <% if(find.Name == nameofstudent) { %>
+                 <tr>
+                     <td><%= i+1 %></td>
+                     <td><%= find[i].Reason %></td>
+                     <td><%= find[i].outtime %></td>
+                     <td><%= find[i].intime %></td>
+                     <td><%= find[i].ApplyDate %></td>
+                     <td id="<%=i%>")><%= find[i].finalstatus %></td>
+                 </tr>
+             <% } %>
+             <% } %>
+     </tbody>
+     </table>
+   </div>
+</body>
+</html>

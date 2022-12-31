@@ -152,7 +152,7 @@
         .data-table td::before{
             color: #695CFE;
         }
-
+        
         @media (min-width:922px){
             .data-table td::before{
                 display: none;
@@ -223,7 +223,6 @@
                    <thead>
                     <tr>
                         <th>No</th>
-                        <!-- <th>PRN</th> -->
                         <th>Reason</th>
                         <th>Out Time</th>
                         <th>In Time</th>
@@ -234,20 +233,21 @@
                    <tbody>
                     <% for(let i = 0;i < find.length ;i++){ %>
                         <% if(find.Name == nameofstudent) { %>
+                            <% if(find[i].finalstatus == "Pending"){ %>  
                             <tr>
                                 <td><%= i+1 %></td>
                                 <td><%= find[i].Reason %></td>
                                 <td><%= find[i].outtime %></td>
                                 <td><%= find[i].intime %></td>
                                 <td><%= find[i].ApplyDate %></td>
-                                <td><%= find[i].finalstatus %></td>
+                                <td id="<%=i%>" style="color:#f5ab55;"><%= find[i].finalstatus %></td>
                             </tr>
+                        <% } %>
                         <% } %>
                         <% } %>
                 </tbody>
                 </table>
             </div>
-       
     </div>
 </body>
 </html>

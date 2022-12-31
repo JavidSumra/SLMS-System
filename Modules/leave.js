@@ -31,18 +31,18 @@ let leaveschema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ["pending", "approved", "denied"],
-        default: "pending"
+        enum: ["Pending", "approved", "denied"],
+        default: "Pending"
       },
       professorstatus: {
         type: String,
-        enum: ["pending", "approved", "denied"],
-        default: "pending"
+        enum: ["Pending", "approved", "denied"],
+        default: "Pending"
       },
       finalstatus: {
         type: String,
-        enum: ["pending", "approved", "denied"],
-        default: "pending"
+        enum: ["Pending", "approved", "denied"],
+        default: "Pending"
       },
       approved: {
         type: Boolean,

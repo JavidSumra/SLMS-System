@@ -21,6 +21,7 @@ const Professor = require("./Modules/Professor");
 const { update } = require('./Modules/student');
 const Leave = require("./Modules/leave");
 const { error } = require('console');
+const leave = require('./Modules/leave');
 
 
 //Path
@@ -111,6 +112,15 @@ app.get("/hod/login",(req,res)=>{
   }
 });
 
+app.get("/hod/home",async (req,res)=>{
+  try {
+    find = await Leave.find({})
+    res.status(201).render("hodhome",{find})
+  } catch (error) {
+    console.log(error)
+  }
+});
+
 app.get("/professor/login",(req,res)=>{
   try {
     res.status(201).render("LoginP")
@@ -135,7 +145,7 @@ app.get("/Home",async (req,res)=>{
 
    
     if(find){
-      console.log("Hello")
+      // console.log("Hello");
       res.status(201).render("Home",{nameofstudent,today,find});
     }
     else{
@@ -165,6 +175,18 @@ app.get("/OTPH",(req,res)=>{
 app.get("/OTPP",(req,res)=>{
   try {
     res.status(201).render("OTPP",{Emailsuccess:req.flash("Email-success")})
+  } catch (error) {
+    console.log(error)
+  }
+});
+
+app.get("/history",async (req,res)=>{
+
+  find = await Leave.find({});
+  find.Name = nameofstudent;
+
+  try {
+    res.status(201).render("History",{find,nameofstudent});
   } catch (error) {
     console.log(error)
   }
@@ -220,6 +242,28 @@ app.post("/login", async (req, res) => {
           enrollmentNo = result.PRN;
           // console.log(enrollmentNo)
            res.status(201).redirect("/Home");
+      }
+       else {
+        req.flash("LoginError","Login Detail Not Match")
+        res.status(201).redirect("/")
+      }
+    }
+   catch (error) {
+    console.log(error);
+  }
+});
+app.post("/hod/login", async (req, res) => {
+  try {
+    const email = req.body.Email;
+    const Password = req.body.Password;
+    console.log(email+"\n"+Password)
+    let result = await Hod.findOne({ Email: email });
+
+    if (result.Email == email && result.Password == Password) 
+      {
+         
+          // console.log(enrollmentNo)
+           res.status(201).redirect("/hod/home");
       }
        else {
         req.flash("LoginError","Login Detail Not Match")
